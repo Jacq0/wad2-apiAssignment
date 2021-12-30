@@ -7,6 +7,9 @@ import express from 'express';
 import moviesRouter from './api/movies';
 import genresRouter from './api/genres';
 import usersRouter from './api/users';
+// replace existing import with passport strategy​
+import passport from './authenticate';
+
 
 dotenv.config();
 
@@ -27,15 +30,18 @@ const port = process.env.PORT;
 app.use(express.json());
 
 //session middleware
-app.use(session({
+/*app.use(session({
     secret: 'ilikecake',
     resave: true,
     saveUninitialized: true
-  }));
+  }));*/
+
+  // replace app.use(session([... with the following:
+app.use(passport.initialize());
 
 //movie and genre routers
-//update /api/Movie route
-app.use('/api/movies', authenticate, moviesRouter);
+// Add passport.authenticate(..)  to middleware stack for protected routes​
+app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/genres', genresRouter);
 
 //Users router
