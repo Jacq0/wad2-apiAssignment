@@ -18,6 +18,7 @@ async function loadUsers() {
   }
 }
 
+//this makes api/genres/genresData redundant!
 async function loadGenres() {
     console.log('load genre Data');
     try {
