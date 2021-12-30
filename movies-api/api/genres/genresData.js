@@ -1,4 +1,4 @@
-export const genres= {
+export const genres= { //this is also redundant!
     "genres": [
         {
             "id": 28,

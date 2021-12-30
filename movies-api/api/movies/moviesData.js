@@ -1,4 +1,4 @@
-export const movies = {
+export const movies = { //this is redundant
     "page": 1,
     "results": [
         {
