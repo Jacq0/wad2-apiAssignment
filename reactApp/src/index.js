@@ -1,16 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
-import { PublicPage, Movies, Profile, HomePage } from "./pages";
-import LoginPage from "./loginPage";
-import AuthProvider from "./authContext";
-import PrivateRoute from "./privateRoute";
-import AuthHeader from "./authHeader";
-import SignUpPage from "./signUpPage";
+import { PublicPage, Movies, Profile, HomePage, TMDBUpcoming } from "./pages/pages";
+import LoginPage from "./pages/loginPage";
+import AuthProvider from "./contexts/authContext";
+import PrivateRoute from "./components/privateRoute";
+import AuthHeader from "./components/authHeader";
+import SignUpPage from "./pages/signUpPage";
 import MovieProvider from "./moviesContext";
+import AboutPage from "./pages/aboutPage";
+import MoviesPage from "./pages/upcomingMoviesPage";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools'; //this is our bottom bar that shows
+
+//original webpage
+/*const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 360000,
+      refetchInterval: 360000, 
+      refetchOnWindowFocus: false
+    },
+  },
+});
 
 const App = () => {
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <AuthProvider>
         <AuthHeader />
@@ -27,6 +43,12 @@ const App = () => {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/upcoming">Upcoming Movies</Link>
+          </li>
         </ul>
         <MovieProvider>
         <Switch>
@@ -34,6 +56,8 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
+          <Route path="/about" component={AboutPage} />
+          <PrivateRoute path="/upcoming" component={MoviesPage} />
           <PrivateRoute path="/movies" component={Movies} />
           <PrivateRoute path="/profile" component={Profile} />
           <Redirect from="*" to="/" />
@@ -41,7 +65,9 @@ const App = () => {
         </MovieProvider>
       </AuthProvider>
     </BrowserRouter>
+    <ReactQueryDevtools initialIsOpen={false} /> 
+    </QueryClientProvider>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));*/

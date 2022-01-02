@@ -26,3 +26,34 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
   };
+
+
+
+  
+  export const getTMDB = () => {
+
+    console.log(fetch(
+        '/api/movies/tmdb/upcoming' ,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    ).then(res => res.json()))
+      return fetch(
+          '/api/movies/tmdb/upcoming' /*,{
+              headers: {
+                  'Content-Type': 'json'
+              }
+          }*/
+      ).then(res => res.json())
+  }
+
+  /*export const getTMDBMovies = () => {
+      //console.log("Get TMDB Movies Called")
+    return fetch(
+       '/api/movies/tmdb/upcoming',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };*/

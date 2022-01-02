@@ -1,8 +1,8 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
-import { getMovies } from "./api/movie-api";
 //import { getTMDBMovies } from "./api/movie-api";
+import { getTMDB } from "../api/movie-api";
 
-export const MoviesContext = createContext(null);
+export const TMDBContext = createContext(null);
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -13,27 +13,28 @@ const reducer = (state, action) => {
   }
 };
 
-const MoviesContextProvider = props => {
+const TMDBContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, { movies: []});
-  const [authenticated, setAuthenticated] = useState(false);
+  //const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    getMovies().then(result => {
+    getTMDB().then(result => {
+        //console.log("TMDB CONTEXT CALLED")
       console.log(result);
       dispatch({ type: "load", payload: {result}});
     });
   },[]);
 
   return (
-    <MoviesContext.Provider
+    <TMDBContext.Provider
       value={{
         movies: state.movies,
-        setAuthenticated
+        //setAuthenticated
       }}
     >
       {props.children}
-    </MoviesContext.Provider>
+    </TMDBContext.Provider>
   );
 };
 
-export default MoviesContextProvider
+export default TMDBContextProvider
