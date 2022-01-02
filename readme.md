@@ -1,3 +1,3 @@
-# Web App Dev 2: Web API Labs
+# Web App Dev 2: Assignment 2
 
-Practical labs for the WAD2 module, BSc. Applied/Software Systems Dev/Forensics
+Web app Development assignment 2: A frontend React app with backend API (Express, Mongoose, JWT, etc.)

@@ -5,16 +5,17 @@ import Spinner from '../components/spinner'
 import {getUpcomingMovies} from '../api/tmdb-api'
 //import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import PlaylistAddIcon from '../components/cardIcons/addToPlaylist'
-import {getTMDB} from '../api/movie-api';
+//import {getAPIUpcomingMovies} from '../api/tmdb-api';
+import { getMovies } from "../api/movie-api";
 
 //import { useContext} from 'react';
 //import { TMDBContext } from "../tmdbContext";
 
 const UpcomingMoviesPage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('upcoming', getTMDB) //change name of query to stop interference!
+  const {  data, error, isLoading, isError }  = useQuery('upcoming', getMovies) //change name of query to stop interference!
   //const context = useContext(TMDBContext);
 
-  console.log(getTMDB)
+  //console.log(getTMDB)
 
   if (isLoading) {
     return <Spinner />
