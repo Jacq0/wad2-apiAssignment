@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { login, signup, addFavourite, getFavourites } from "../api/movie-api";
+import { login, signup, addFavourite, getFavourites, removeFavourite, addReview } from "../api/movie-api";
 
 export const AuthContext = createContext(null);
 
@@ -43,7 +43,16 @@ const AuthContextProvider = (props) => {
   }
 
   const removeFromFavourites = (movie) => {
-    console.log("Removed From Favourites!")
+    console.log("Removed From Favourites!");
+    setFavourites( favourites.filter(
+      (mId) => mId !== movie.id
+    ) )
+    removeFavourite(userName, movie.id); //this method needs to be made!
+  }
+
+  const addToReviews = (movie, review) =>
+  {
+      addReview(movie, review);
   }
 
   return (
@@ -54,6 +63,8 @@ const AuthContextProvider = (props) => {
         register,
         signout,
         addToFavourites,
+        addToReviews,
+        removeFromFavourites,
         favourites,
         userName,
         //username

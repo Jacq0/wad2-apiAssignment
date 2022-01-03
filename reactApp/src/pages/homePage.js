@@ -1,8 +1,9 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from 'react-query'
-import Spinner from '../components/spinner'
-import {getMovies} from '../api/tmdb-api'
+import Spinner from '../components/spinner';
+//import {getMovies} from '../api/tmdb-api'
+import { getMovies } from "../api/movie-api";
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const HomePage = (props) => {
@@ -18,9 +19,9 @@ const HomePage = (props) => {
   const movies = data.results;
 
   // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
+  /*const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  const addToFavorites = (movieId) => true*/
 
   return (
     <PageTemplate

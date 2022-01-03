@@ -29,13 +29,6 @@ const port = process.env.PORT;
 //middleware stack!
 app.use(express.json());
 
-//session middleware
-/*app.use(session({
-    secret: 'ilikecake',
-    resave: true,
-    saveUninitialized: true
-  }));*/
-
   // replace app.use(session([... with the following:
 app.use(passport.initialize());
 

@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
-import { Profile } from "./pages/pages";
+//import { Profile } from "./pages/pages";
 import LoginPage from "./pages/loginPage";
 import AuthProvider from "./contexts/authContext";
 import PrivateRoute from "./components/privateRoute";
 import AuthHeader from "./components/authHeader";
 import SignUpPage from "./pages/signUpPage";
-import MovieProvider from "./moviesContext";
+//import MovieProvider from "./moviesContext";
 import AboutPage from "./pages/aboutPage";
-import MoviesPage from "./pages/upcomingMoviesPage";
+//import MoviesPage from "./pages/upcomingMoviesPage";
 import ProfilePage from "./pages/profilePage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'; //this is our bottom bar that shows

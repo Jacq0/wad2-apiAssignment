@@ -9,7 +9,7 @@ export const getUpcomingMovies = () => {
             throw new Error(response.json().message);
         }
         console.log(response.json());
-        return response.json();
+        return JSON.stringify(response.json());
     })
         .catch((error) => {
             throw error

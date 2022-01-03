@@ -167,4 +167,19 @@ export const getMovie = (args) => {
        throw error
     });
   };
+
+
+  export const getTMDBMovies = () => {
+    return fetch(
+      `/api/movies/tmdb/upcoming`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return JSON.stringify(response.json());
+    })
+    .catch((error) => {
+       throw error
+    });
+  };
   

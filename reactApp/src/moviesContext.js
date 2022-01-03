@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
-import { getMovies } from "./api/movie-api";
-//import { getTMDBMovies } from "./api/movie-api";
+//import { getMovies } from "./api/movie-api";
+import { getTMDBMovies } from "./api/tmdb-api";
 
 export const MoviesContext = createContext(null);
 
@@ -18,7 +18,7 @@ const MoviesContextProvider = props => {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    getMovies().then(result => {
+    getTMDBMovies().then(result => {
       console.log(result);
       dispatch({ type: "load", payload: {result}});
     });
