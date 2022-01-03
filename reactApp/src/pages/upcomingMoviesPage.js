@@ -6,7 +6,7 @@ import {getUpcomingMovies} from '../api/tmdb-api'
 //import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import PlaylistAddIcon from '../components/cardIcons/addToPlaylist'
 //import {getAPIUpcomingMovies} from '../api/tmdb-api';
-import { getMovies } from "../api/movie-api";
+import { getMovies, getTMDBMovies } from "../api/movie-api";
 
 //import { useContext} from 'react';
 //import { TMDBContext } from "../tmdbContext";

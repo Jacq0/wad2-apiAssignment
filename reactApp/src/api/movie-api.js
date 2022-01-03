@@ -1,3 +1,5 @@
+import { responsiveFontSizes } from "@material-ui/core";
+
 export const login = (username, password) => {
     return fetch('/api/users', {
         headers: {
@@ -14,9 +16,32 @@ export const signup = (username, password) => {
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body: JSON.stringify({ username: username, password: password })
+        body: JSON.stringify({ username: username, password: password }) //this doesn't work :(
     }).then(res => res.json())
 };
+
+export const addFavourite = (username, id) => {
+  return fetch(`/api/users/${username}/favourites`, 
+  {
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify({username: username, id: id})
+  }).then(res => res.json())
+};
+
+export const getFavourites = (username) => {
+  return fetch(`/api/users/${username}/favourites`
+  ).then((res) =>{
+    if(!res.ok){
+      throw new Error(res.json().message);
+    }
+    return res.json();
+  }).catch((error) => {
+    throw error
+  });
+}
 
 export const getMovies = () => {
     return fetch(
@@ -27,9 +52,28 @@ export const getMovies = () => {
     ).then(res => res.json());
   };
 
+  export const getMovie = (id) => {
+    return fetch(
+       `/api/movies/${id}`,{
+           headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }//, body: JSON.stringify({})
+    }).then(res => res.json());
+  };
 
 
-  
+
+  export const getTMDBMovies = () => {
+    return fetch(
+       '/api/movies/tmdb/upcoming',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+
+
   export const getTMDB = () => {
 
     console.log(fetch(
