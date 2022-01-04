@@ -21,45 +21,55 @@ Now you can clone the Repo:
 git clone https://github.com/Jacq0/wad2-expandedMoviesApp
 ```
 
-and install the application
+and install the application:
 
 ```bat
 git install
 ```
 
 ## API Configuration
-Describe any configuration that needs to take place before running the API. For example, creating an ``.env`` and what variables to put in it. Give an example of how this might be structured/done.
-REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB, just placeholders as indicated below:
+Before running the app you must configure mongo, set it up and give it a default DB folder for the API (This will be used to store seeded data that can be called from the API, as well as user data). 
+
+A .env file is also required, create one with the following fields (Replace any <> wrapped comments with your own variables):
 
 ```bat
 NODE_ENV=development
 PORT=8080
-HOST=
-mongoDB=YourMongoURL
-seedDb=true
-secret=YourJWTSecret
+HOST=localhost
+MONGO_DB=<Link to mongo database>
+SEED_DB=True
+SECRET=<Your JWT Secret Key>
+TMDB_KEY=<Your TMDB API Key>
 ```
 
+Finally make sure to run both the API (movie-api) and the React App (reactApp) using: 
+
+```bat
+npm start
+``` 
 
 ## API Design
-Give an overview of your web API design, perhaps similar to the following: 
+The API can make the following calls: 
 
-|  |  GET | POST | PUT | DELETE
+| API Call |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
 | /api/movies |Gets a list of movies | N/A | N/A |
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
 | /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
+| /api/users/{username}/favourites | Get Users Favourites | Add Favourite | N/A | Remove Favourite 
 | ... | ... | ... | ... | ...
-
-If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
+| ... | ... | ... | ... | ...
+| ... | ... | ... | ... | ...
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+Certain Pages (Mainly the TMDB ones and the favourite ones) Are inacessible to anyone who doesn't have a Bearer token (ie. someone who is not logged in to the site).
+
+Most of the API routes are protected (Or at least they should be)
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
+I began with the base finished API labs, and gradually added pages and features onto it from my expanded Movie App Assignment (<https://github.com/Jacq0/wad2-expandedMoviesApp>).
 
 ~~~Javascript
 export const getMovies = () => {
