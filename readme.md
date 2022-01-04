@@ -77,9 +77,9 @@ export const getMovies = () => {
 
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app. 
-
 Created an API link and template for the Shows pages craeted for my Web App Dev React Assignment 1. This was very similar to the movies one already implemented!
+
+The first assignment can be found here: <https://github.com/Jacq0/wad2-expandedMoviesApp>
 
 ## Independent learning
 
