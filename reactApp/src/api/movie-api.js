@@ -66,7 +66,7 @@ export const removeFavourite = (username, id) => {
     headers: { 
       'Content-Type': 'application/json'
     },
-    method: 'get',
+    //method: 'get',
     body: JSON.stringify({username: username, id: id})
   }).then(res => res.json())
 }

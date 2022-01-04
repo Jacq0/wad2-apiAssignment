@@ -4,7 +4,8 @@ Name: Jack Fitzpatrick
 
 ## Additional Features.
  
- + Implemented a favouriting system using the API
+ + Implemented a favouriting system using the API.
+ + Implemented reviewing routing to the system. Sadly the single movie page doesn't work yet :(
 
 ## Installation Requirements
 
@@ -53,14 +54,16 @@ The API can make the following calls:
 
 | API Call |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
-| /api/movies |Gets a list of movies | N/A | N/A |
+| /api/movies | Gets a list of movies | N/A | N/A |
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
 | /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
+| /api/users | N/A | Login | N/A | N/A
+| /api/users?action=register | N/A | Sign Up | N/A | N/A
 | /api/users/{username}/favourites | Get Users Favourites | Add Favourite | N/A | Remove Favourite 
-| ... | ... | ... | ... | ...
-| ... | ... | ... | ... | ...
-| ... | ... | ... | ... | ...
-
+| /api/genres | Return list of Genres | N/A | N/A | N/A
+| /api/movies/tmdb | Return movies discovery from TMDB | N/A | N/A | N/A
+| /api/movies/tmdb/upcoming | Return upcoming from TMDB | N/A | N/A | N/A
+| /api/shows/tmdb | Return shows discovery from TMDB | N/A | N/A | N/A
 
 ## Security and Authentication
 Certain Pages (Mainly the TMDB ones and the favourite ones) Are inacessible to anyone who doesn't have a Bearer token (ie. someone who is not logged in to the site).
@@ -69,28 +72,33 @@ Most of the API routes are protected (Or at least they should be)
 
 ## Integrating with React App
 
-I began with the base finished API labs, and gradually added pages and features onto it from my expanded Movie App Assignment (<https://github.com/Jacq0/wad2-expandedMoviesApp>).
+I began with the base finished API labs, and gradually added pages and features onto it from my expanded Movies App Assignment (<https://github.com/Jacq0/wad2-expandedMoviesApp>).
+
+Here is an example API call for the addFavourite function, which had to be modified to work with my API and the user account:
 
 ~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
-    }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
+export const addFavourite = (username, id) => {
+  return fetch(`/api/users/${username}/favourites`, 
+  {
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify({username: username, id: id})
+  }).then(res => res.json())
 };
-
 ~~~
+
+This is just one example of the many modifications and changes made to get the custom API working with this React Application.
+
+Before it used to simply store the favourites in memory, which would be lost on a reload. Now an API call is made to the Users favourites and it is stored in the User within the DB. An improvement for sure!
 
 ## Extra features
 
-Created an API link and template for the Shows pages craeted for my Web App Dev React Assignment 1. This was very similar to the movies one already implemented!
+Created an API link and template for the Shows pages created for my Web App Dev React Assignment 1. This was very similar to the movies one already implemented!
 
 The first assignment can be found here: <https://github.com/Jacq0/wad2-expandedMoviesApp>
 
 ## Independent learning
 
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+Nothing out of the ordinary added so far. Most of the time was spent debugging and getting the API working with the React Application. This is something to expand the Assignment with in the future!
