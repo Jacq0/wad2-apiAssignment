@@ -10,8 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import img from '../../images/cinema.jpg'
-import { getGenres } from "../../api/tmdb-api";
+import img from '../../images/cinema.jpg';
+import { getGenres } from "../../api/movie-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
@@ -33,6 +33,8 @@ export default function FilterMoviesCard(props) {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
+  console.log(data)
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -41,24 +43,13 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
 
-  //the const cannot be modified, except when you use an array modify function ffs
-  //const genres = data.genres;
-  //const genreListLength = genres.length;
+  const genres = data; //we do not need to call data.genres anymore since the whole array is returned
 
-  /*if(genreListLength < genreListLength+1)
-  {
-    genres.unshift({ id: "0", name: "All" });
-  }*/
-
-  let genres = []
-  genres = data.genres;
-  let genreListLength = genres.length;
-
-  genres.unshift({id: "0", name: "All"})
+  genres.unshift({id: "0", name: "All"}) //bug where it keeps appending this, couldn't fix!
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value); // NEW
+    props.onUserInput(type, value);
   };
 
   const handleTextChange = (e, props) => {
@@ -68,7 +59,6 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
-
 
   return (
     <Card className={classes.root} variant="outlined">

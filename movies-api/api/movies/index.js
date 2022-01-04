@@ -3,10 +3,14 @@ import { movies, movieReviews, movieDetails } from './moviesData';
 import uniqid from 'uniqid'
 import movieModel from './movieModel';
 import asyncHandler from 'express-async-handler';
-import {getUpcomingMovies} from '../tmdb-api';
+import {getMovies, getUpcomingMovies} from '../tmdb-api';
 
 const router = express.Router(); 
 router.get('/', asyncHandler(async (req, res) => {
+    //lets us define paging and page limits!
+    //const page = parseInt(req.params.page);
+    //const limit = parseInt(req.params.limit);
+
     let { page = 1, limit = 10 } = req.query; // destructure page and limit and set default values
     [page, limit] = [+page, +limit]; //trick to convert to numeric (req.query will contain string values)
 
@@ -64,11 +68,19 @@ router.post('/:id/reviews', (req, res) => {
     }
 });
 
+//routing for TMDB outputs, currently broken!
+router.get('/tmdb', asyncHandler( async(req, res) => {
+    const movies = await getMovies();
+    console.log(res.json(movies));
+    res.status(200).json(movies);
+}));
+
+//TMDB upcoming
 router.get('/tmdb/upcoming', asyncHandler( async(req, res) => {
     //console.log("TMDB Upcoming Called");
     const upcomingMovies = await getUpcomingMovies();
     //console.log(upcomingMovies)
     res.status(200).json(upcomingMovies);
   }));
-
+  
 export default router;

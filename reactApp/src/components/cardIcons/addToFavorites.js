@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-//import { MoviesContext } from "../../contexts/moviesContext";
-import { AuthContext } from "../../contexts/authContext";
+import { AuthContext } from "../../contexts/authContext"; //changed from the movie context!
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 

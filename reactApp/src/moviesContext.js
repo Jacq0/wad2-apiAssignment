@@ -1,5 +1,4 @@
-import React, { useState, createContext, useEffect, useReducer } from "react";
-//import { getMovies } from "./api/movie-api";
+/*import React, { useState, createContext, useEffect, useReducer } from "react";
 import { getTMDBMovies } from "./api/tmdb-api";
 
 export const MoviesContext = createContext(null);
@@ -36,4 +35,4 @@ const MoviesContextProvider = props => {
   );
 };
 
-export default MoviesContextProvider
+export default MoviesContextProvider*/
